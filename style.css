@@ -1,0 +1,107 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  background-image: linear-gradient(to bottom, #4A89DC, #8AB9DB);
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  color: #1E3D59;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 48px;
+}
+
+form {
+  margin-bottom: 30px;
+}
+
+input[type="text"] {
+  border: 2px solid #1E3D59;
+  border-radius: 5px;
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: #1E3D59;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: block;
+  margin: 10px auto;
+  font-size: 18px;
+}
+
+button[type="submit"]:hover {
+  background-color: #143D52;
+}
+
+.list-group-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: rgba(30, 61, 89, 0.1);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.list-group-item .btn {
+  margin-left: 5px;
+}
+
+.btn-danger {
+  background-color: #DC3545;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #C82333;
+}
+
+.btn-secondary {
+  background-color: #6C757D;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #5A6268

@@ -10,6 +10,10 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <div class="container">
@@ -43,54 +47,64 @@
       crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-      let tasks = [];
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-      function addTask() {
-        event.preventDefault();
-        const taskInput = document.getElementById("taskInput");
-        if (taskInput.value !== "") {
-          tasks.push(taskInput.value);
-          taskInput.value = "";
-          displayTasks();
-        }
-      }
-
-      function deleteTask(index) {
-        tasks.splice(index, 1);
-        displayTasks();
-        Swal.fire({
-          title: "Success!",
-          text: "Task deleted successfully.",
-          icon: "success",
-          confirmButtonText: "OK"
-        });
-      }
-
-      function editTask(index) {
-        const task = tasks[index];
-        const newTask = prompt("Enter new task name:", task);
-        if (newTask !== null && newTask !== "") {
-          tasks[index] = newTask;
-          displayTasks();
-        }
-      }
-
-      function displayTasks() {
-        const taskList = document.getElementById("taskList");
-        taskList.innerHTML = "";
-        tasks.forEach((task, index) => {
-          const li = document.createElement("li");
-          li.className = "list-group-item d-flex justify-content-between align-items-center";
-          li.innerHTML = `
-            ${task}
-            <div>
-              <button type="button" class="btn btn-danger btn-sm mr-2" onclick="deleteTask(${index})">Delete</button>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="editTask(${index})">Edit</
-        </div>
-      `;
-      taskList.appendChild(li);
-    });
+function addTask() {
+  event.preventDefault();
+  const taskInput = document.getElementById("taskInput");
+  if (taskInput.value !== "") {
+    tasks.push(taskInput.value);
+    taskInput.value = "";
+    saveTasksToLocalStorage();
+    displayTasks();
   }
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveTasksToLocalStorage();
+  displayTasks();
+  Swal.fire({
+    title: "Success!",
+    text: "Task deleted successfully.",
+    icon: "success",
+    confirmButtonText: "OK",
+  });
+}
+
+function editTask(index) {
+  const task = tasks[index];
+  const newTask = prompt("Enter new task name:", task);
+  if (newTask !== null && newTask !== "") {
+    tasks[index] = newTask;
+    saveTasksToLocalStorage();
+    displayTasks();
+  }
+}
+
+function displayTasks() {
+  const taskList = document.getElementById("taskList");
+  taskList.innerHTML = "";
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.className = "list-group-item d-flex justify-content-between align-items-center";
+    li.innerHTML = `
+      ${task}
+      <div>
+        <button type="button" class="btn btn-danger btn-sm mr-2" onclick="deleteTask(${index})">Delete</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="editTask(${index})">Edit</button>
+      </div>
+    `;
+    taskList.appendChild(li);
+  });
+}
+
+function saveTasksToLocalStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+displayTasks();
+
 </script>
 </body>
 </html>
